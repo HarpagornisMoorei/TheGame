@@ -1,0 +1,133 @@
+[gd_scene load_steps=19 format=3 uid="uid://bx60ih8pgiaw7"]
+
+[ext_resource type="Texture2D" uid="uid://bjue4etiiq03q" path="res://real-pixels-artwork(1).png" id="1_e8bxi"]
+[ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
+[ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
+[ext_resource type="Script" path="res://TextureButton1.cs" id="2_xopu5"]
+[ext_resource type="Script" path="res://TextureButton4.cs" id="4_co05e"]
+[ext_resource type="Texture2D" uid="uid://dwqws4psgtxji" path="res://real-pixels-artwork(7).png" id="4_ventv"]
+[ext_resource type="Script" path="res://Camera3Dsignal.gd" id="7_c4g4y"]
+[ext_resource type="Script" path="res://Camera3D2.gd" id="8_5156q"]
+[ext_resource type="Script" path="res://Panel1.gd" id="8_b04yo"]
+[ext_resource type="Script" path="res://DialogueManager.gd" id="10_civ2p"]
+[ext_resource type="Script" path="res://Button1.gd" id="13_e5g4p"]
+[ext_resource type="Script" path="res://Obutton.gd" id="13_r2q86"]
+[ext_resource type="PackedScene" uid="uid://ch7uhlvry11b3" path="res://textures/hbuild2.glb" id="14_h1aqy"]
+[ext_resource type="Script" path="res://Nodeb.gd" id="14_xnxjj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_s7m45"]
+sky_material = SubResource("ProceduralSkyMaterial_sphtl")
+
+[sub_resource type="Environment" id="Environment_pr0wb"]
+background_mode = 2
+sky = SubResource("Sky_s7m45")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2706"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("10_civ2p")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pr0wb")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 436.0
+offset_top = 88.0
+offset_right = 679.0
+offset_bottom = 196.0
+texture_normal = ExtResource("1_e8bxi")
+stretch_mode = 3
+script = ExtResource("2_xopu5")
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 455.0
+offset_top = 184.0
+offset_right = 657.0
+offset_bottom = 261.0
+texture_normal = ExtResource("2_3owt7")
+stretch_mode = 3
+script = ExtResource("4_co05e")
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 508.0
+offset_top = 277.0
+offset_right = 608.0
+offset_bottom = 317.0
+texture_normal = ExtResource("4_ventv")
+script = ExtResource("2_h6dge")
+
+[node name="Node3D" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.975223, -0.221225, 0, 0.221225, 0.975223, 0, 0, 0)
+current = true
+script = ExtResource("7_c4g4y")
+
+[node name="Camera3D2" type="Camera3D" parent="Node3D"]
+transform = Transform3D(-0.366371, 0, -0.930469, 0, 1, 0, 0.930469, 0, -0.366371, 0.741907, 0, 0)
+script = ExtResource("8_5156q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 1
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_l2706")
+position = Vector2(576, 324)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 238.0
+offset_top = 175.0
+offset_right = 912.0
+offset_bottom = 495.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_b04yo")
+
+[node name="ExitPrompt" type="Label" parent="."]
+y_sort_enabled = true
+offset_left = 435.0
+offset_top = 214.0
+offset_right = 686.0
+offset_bottom = 237.0
+text = "Exit? Click y/n on your keyboard."
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = 412.0
+offset_top = 363.0
+offset_right = 642.0
+offset_bottom = 484.0
+text = "hiii"
+
+[node name="Obutton" type="Node" parent="."]
+script = ExtResource("13_r2q86")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 415.0
+offset_top = 121.0
+offset_right = 423.0
+offset_bottom = 272.0
+script = ExtResource("13_e5g4p")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("14_xnxjj")
+
+[node name="hbuild2" parent="." instance=ExtResource("14_h1aqy")]
+transform = Transform3D(-0.945035, 0, -0.326971, 0, 1, 0, 0.326971, 0, -0.945035, 16.585, 2.30084, -8.36826)
+
+[node name="hbuild3" parent="." instance=ExtResource("14_h1aqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8606, 0, -6.35243)
