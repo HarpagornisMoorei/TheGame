@@ -1,19 +1,21 @@
-[gd_scene load_steps=19 format=3 uid="uid://bx60ih8pgiaw7"]
+[gd_scene load_steps=21 format=3 uid="uid://bx60ih8pgiaw7"]
 
 [ext_resource type="Texture2D" uid="uid://bjue4etiiq03q" path="res://real-pixels-artwork(1).png" id="1_e8bxi"]
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
-[ext_resource type="Script" path="res://TextureButton1.cs" id="2_xopu5"]
+[ext_resource type="Script" path="res://TextureButton1.gd" id="3_2axvj"]
 [ext_resource type="Script" path="res://TextureButton4.cs" id="4_co05e"]
 [ext_resource type="Texture2D" uid="uid://dwqws4psgtxji" path="res://real-pixels-artwork(7).png" id="4_ventv"]
 [ext_resource type="Script" path="res://Camera3Dsignal.gd" id="7_c4g4y"]
 [ext_resource type="Script" path="res://Camera3D2.gd" id="8_5156q"]
 [ext_resource type="Script" path="res://Panel1.gd" id="8_b04yo"]
 [ext_resource type="Script" path="res://DialogueManager.gd" id="10_civ2p"]
+[ext_resource type="Script" path="res://Camera3D3.cs" id="10_p4fll"]
 [ext_resource type="Script" path="res://Button1.gd" id="13_e5g4p"]
 [ext_resource type="Script" path="res://Obutton.gd" id="13_r2q86"]
 [ext_resource type="PackedScene" uid="uid://ch7uhlvry11b3" path="res://textures/hbuild2.glb" id="14_h1aqy"]
 [ext_resource type="Script" path="res://Nodeb.gd" id="14_xnxjj"]
+[ext_resource type="Script" path="res://TextureButton4.gd" id="16_38707"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,7 +45,7 @@ offset_right = 679.0
 offset_bottom = 196.0
 texture_normal = ExtResource("1_e8bxi")
 stretch_mode = 3
-script = ExtResource("2_xopu5")
+script = ExtResource("3_2axvj")
 
 [node name="TextureButton2" type="TextureButton" parent="."]
 offset_left = 455.0
@@ -71,8 +73,11 @@ current = true
 script = ExtResource("7_c4g4y")
 
 [node name="Camera3D2" type="Camera3D" parent="Node3D"]
-transform = Transform3D(-0.366371, 0, -0.930469, 0, 1, 0, 0.930469, 0, -0.366371, 0.741907, 0, 0)
+transform = Transform3D(-0.366371, 0, -0.930469, 0, 1, 0, 0.930469, 0, -0.366371, 0.741907, 8.83691, 0)
 script = ExtResource("8_5156q")
+
+[node name="Camera3D3" type="Camera3D" parent="Node3D"]
+script = ExtResource("10_p4fll")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1
@@ -131,3 +136,9 @@ transform = Transform3D(-0.945035, 0, -0.326971, 0, 1, 0, 0.326971, 0, -0.945035
 
 [node name="hbuild3" parent="." instance=ExtResource("14_h1aqy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8606, 0, -6.35243)
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+offset_right = 115.0
+offset_bottom = 51.0
+texture_normal = ExtResource("2_3owt7")
+script = ExtResource("16_38707")
