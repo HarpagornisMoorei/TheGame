@@ -1,10 +1,12 @@
 extends Node
 
 var dialogue_texts = {
-	1: "Welcome to the sandbox game!",
+	1: "Why did you click the O button?",
 	2: "This is another piece of dialogue.",
-	3: "Another piece of the story.",
-	4: "Yet another important message.",
+	3: "(Blitzo) welcome to the game.",
+	4: "Click play to play.",
+	5: "M for Menu",
+	6: "Esc then y to exit",
 	# Add more dialogue IDs and texts as needed
 }
 
@@ -12,8 +14,8 @@ var dialogue_active = false
 var current_dialogue_id = 0
 var is_standalone_dialogue = false  # Flag to indicate if the current dialogue is standalone
 var dialogue_sequences = [
-	{ "start": 3, "end": 4 },
-	{ "start": 5, "end": 8 }
+	{ "start": 3, "end": 6 },
+	{ "start": 9, "end": 10 }
 	# Add more sequences as needed
 ]
 var active_sequence_index = -1  # Index of the currently active sequence in dialogue_sequences
