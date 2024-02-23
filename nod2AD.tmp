@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bx60ih8pgiaw7"]
+[gd_scene load_steps=35 format=3 uid="uid://bx60ih8pgiaw7"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
@@ -26,22 +26,6 @@
 [ext_resource type="Script" path="res://MessageAppScreen.gd" id="24_dvvvc"]
 [ext_resource type="Script" path="res://close.gd" id="24_ktb2a"]
 [ext_resource type="Script" path="res://Panel5.gd" id="26_dsn5o"]
-[ext_resource type="Texture2D" uid="uid://elgoxd1buntf" path="res://real-pixels-artwork(9).png" id="27_h7i8u"]
-[ext_resource type="Script" path="res://MoneyAppButton.gd" id="28_m1xcq"]
-[ext_resource type="Script" path="res://MoneyApp.gd" id="29_ejfkd"]
-[ext_resource type="Texture2D" uid="uid://df11bmggwbn8r" path="res://real-pixels-artwork(12).png" id="30_0n0ug"]
-[ext_resource type="Script" path="res://Email.gd" id="31_2bej4"]
-[ext_resource type="Script" path="res://4.gd" id="31_smt1i"]
-[ext_resource type="Script" path="res://PanelToHide.gd" id="32_1wvxf"]
-[ext_resource type="Script" path="res://Bee eats.gd" id="32_3ssww"]
-[ext_resource type="Script" path="res://Panel2.gd" id="32_byxj7"]
-[ext_resource type="Script" path="res://Map.gd" id="32_we7e2"]
-[ext_resource type="Script" path="res://Bee eats app.gd" id="33_lcdpq"]
-[ext_resource type="Script" path="res://Email app.gd" id="34_ld1lg"]
-[ext_resource type="Texture2D" uid="uid://c5x3xh8062m0h" path="res://real-pixels-artwork(10).png" id="34_vr2kr"]
-[ext_resource type="Script" path="res://l.gd" id="36_rmfb5"]
-[ext_resource type="Texture2D" uid="uid://chfybarjfps00" path="res://map.png" id="38_fdtd7"]
-[ext_resource type="Script" path="res://Maps.gd" id="38_t6lv5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -1356,7 +1340,6 @@ theme_override_font_sizes/normal_font_size = 29
 bbcode_enabled = true
 
 [node name="Panel" type="Panel" parent="Sprite2D/RichTextLabel"]
-visible = false
 layout_mode = 0
 offset_left = -19.0
 offset_top = -10.0
@@ -1420,6 +1403,16 @@ position = Vector2(560, 1526.88)
 scale = Vector2(4.13713, 8.91961)
 texture = ExtResource("20_h8073")
 
+[node name="AppButton" type="TextureButton" parent="Panel2"]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = -1526.88
+offset_right = 1115.0
+offset_bottom = -1426.88
+scale = Vector2(5.21162, 9.27717)
+texture_normal = ExtResource("14_4k0as")
+script = ExtResource("22_dqy4w")
+
 [node name="Untitled26820240217222446" type="Sprite2D" parent="Panel2"]
 position = Vector2(465, 1623.66)
 scale = Vector2(1.48799, 3.68375)
@@ -1452,147 +1445,9 @@ texture_normal = ExtResource("14_4k0as")
 script = ExtResource("24_ktb2a")
 
 [node name="Panel" type="Panel" parent="Panel2"]
-layout_mode = 0
-offset_left = -4914.0
-offset_top = -5918.0
-offset_right = -2702.0
-offset_bottom = -4499.0
+offset_left = -4914.29
+offset_top = -5917.53
+offset_right = -2665.29
+offset_bottom = -4498.53
 scale = Vector2(1.91335, 14.2433)
 script = ExtResource("26_dsn5o")
-
-[node name="MoneyApp" type="TextureRect" parent="Panel2"]
-visible = false
-layout_mode = 0
-offset_left = -481.0
-offset_top = -2134.0
-offset_right = 1609.0
-offset_bottom = 5268.0
-texture = ExtResource("27_h7i8u")
-script = ExtResource("29_ejfkd")
-
-[node name="Bee eats app" type="TextureRect" parent="Panel2"]
-visible = false
-layout_mode = 0
-offset_left = -481.0
-offset_top = -2206.0
-offset_right = 1624.0
-offset_bottom = 5371.0
-texture = ExtResource("34_vr2kr")
-script = ExtResource("33_lcdpq")
-
-[node name="EmailApp" type="TextureRect" parent="Panel2"]
-visible = false
-layout_mode = 0
-offset_left = -481.0
-offset_top = -2155.0
-offset_right = 1619.0
-offset_bottom = 5350.0
-texture = ExtResource("30_0n0ug")
-script = ExtResource("34_ld1lg")
-
-[node name="Maps" type="TextureRect" parent="Panel2"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("32_we7e2")
-
-[node name="Messagaes" type="TextureRect" parent="Panel2"]
-layout_mode = 0
-offset_left = -486.0
-offset_top = -2175.0
-offset_right = 1619.0
-offset_bottom = 5289.0
-texture = ExtResource("38_fdtd7")
-script = ExtResource("32_we7e2")
-
-[node name="Control" type="Control" parent="Panel2"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("36_rmfb5")
-
-[node name="Email" type="TextureButton" parent="Panel2/Control"]
-offset_left = 576.0
-offset_top = -1433.0
-offset_right = 976.0
-offset_bottom = -588.0
-texture_normal = ExtResource("30_0n0ug")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("31_2bej4")
-
-[node name="Bee eats" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = 543.0
-offset_top = 835.0
-offset_right = 967.0
-offset_bottom = 1691.0
-texture_normal = ExtResource("34_vr2kr")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("32_3ssww")
-
-[node name="AppButton" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = 1015.0
-offset_top = -1526.88
-offset_right = 1115.0
-offset_bottom = -1426.88
-scale = Vector2(5.21162, 9.27717)
-texture_normal = ExtResource("14_4k0as")
-script = ExtResource("22_dqy4w")
-
-[node name="MoneyAppButton" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = 1000.0
-offset_top = 1948.45
-offset_right = 1481.0
-offset_bottom = 2927.45
-texture_normal = ExtResource("27_h7i8u")
-stretch_mode = 0
-script = ExtResource("28_m1xcq")
-
-[node name="TextureButton" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = -380.952
-offset_top = -1567.01
-offset_right = 43.0476
-offset_bottom = -515.01
-texture_normal = ExtResource("38_fdtd7")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("38_t6lv5")
-
-[node name="Messages" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = -380.952
-offset_top = -1567.01
-offset_right = 43.0476
-offset_bottom = -515.01
-texture_normal = ExtResource("38_fdtd7")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("38_t6lv5")
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="CloseButton" type="Button" parent="Node2D"]
-offset_left = 76.0
-offset_top = 145.0
-offset_right = 84.0
-offset_bottom = 153.0
-scale = Vector2(6.23089, 5.81482)
-script = ExtResource("31_smt1i")
-
-[node name="PanelToHide" type="Panel" parent="Node2D"]
-offset_left = 219.0
-offset_top = 92.0
-offset_right = 259.0
-offset_bottom = 132.0
-script = ExtResource("32_1wvxf")
-
-[node name="Panel" type="Panel" parent="Node2D"]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("32_byxj7")

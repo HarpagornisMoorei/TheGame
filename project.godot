@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CameraSignals="*res://CameraSignals.gd"
 GlobalSignals="*res://GlobalSignals.gd"
+SignalManager="*res://global.gd"
 
 [dotnet]
 

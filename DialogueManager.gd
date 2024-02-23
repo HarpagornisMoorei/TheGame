@@ -3,7 +3,7 @@ extends Node
 var dialogue_texts = {
 	1: "Why did you click the O button?",
 	2: "This is another piece of dialogue.",
-	3: "(Blitzo) welcome to the game.",
+	3: "(Char) welcome to the game.",
 	4: "Click play to play.",
 	5: "M for Menu",
 	6: "Esc then y to exit",

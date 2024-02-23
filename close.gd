@@ -1,11 +1,11 @@
+# Script for Close button (TextureButton)
 extends TextureButton
 
-# Signal to notify when the close button is pressed
-signal close_all_apps
+signal close_panel_erequested
 
 func _ready():
-	pressed.connect(_on_close_button_pressed)
+	pressed.connect(_on_Button_pressed)
 
-func _on_close_button_pressed():
-	# Emit a signal to close all apps
-	emit_signal("close_all_apps")
+func _on_Button_pressed():
+	# Emit a signal when the button is pressed
+	emit_signal("close_panel_erequested")
