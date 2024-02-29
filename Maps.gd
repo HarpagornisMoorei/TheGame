@@ -6,7 +6,7 @@ func _ready():
 
 func _on_EmailButton_pressed():
 	# Navigate up to "Panel2" and then find "EmailApp"
-	var email_app_screen = get_node("../../Messagaes")
+	var email_app_screen = get_node("../../Gallery app")
 	if email_app_screen:
 		# If found, make the "EmailApp" visible
 		email_app_screen.visible = true

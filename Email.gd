@@ -13,6 +13,7 @@ func _on_EmailButton_pressed():
 	
 	# Emit a signal to hide all buttons, assuming SignalManager has been properly set up
 	SignalManager.emit_signal("hide_all_buttons")
+	SignalManager.emit_signal("update_money", (10))
 
 func hide_this_button():
 	# This function hides the button when the hide_all_buttons signal is emitted
