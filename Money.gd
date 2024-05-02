@@ -5,7 +5,7 @@ var money_amount := 10  # Initialize the money amount with $10
 
 func _ready():
 	# Connect to the SignalManager's update_money signal using Callable
-	SignalManager.connect("update_money", Callable(self, "_on_UpdateMoney"))
+	SignalManager.update_money.connect(Callable(self, "_on_UpdateMoney"))
 	# Display the initial amount
 	update_money_display()
 

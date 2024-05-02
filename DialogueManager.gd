@@ -1,4 +1,16 @@
 extends Node
+# Assuming camera_node is properly defined and accessible
+@onready var camera = get_node("main/SpringArmPivot/SpringArm3D/Camera3D4")
+@onready var camera1 = get_node("Node3D/Camera3D3")
+
+func _process(delta):
+	if camera or camera1.current:
+		process()
+		ready()
+
+func ready():
+	if not GlobalSignals.alert_message.is_connected(_on_alert_message):
+		GlobalSignals.alert_message.connect(_on_alert_message)
 
 var dialogue_texts = {
 	1: "Why did you click the O button?",
@@ -20,10 +32,7 @@ var dialogue_sequences = [
 ]
 var active_sequence_index = -1  # Index of the currently active sequence in dialogue_sequences
 
-func _ready():
-	GlobalSignals.alert_message.connect(_on_alert_message)
-
-func _process(delta):
+func process():
 	if dialogue_active and Input.is_action_just_pressed("next_dialogue"):
 		advance_dialogue()
 	elif dialogue_active and Input.is_action_just_pressed("ui_cancel"):

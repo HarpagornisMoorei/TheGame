@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://07h43ie5kwa" path="res://Untitled255_20240215180024.png" id="6_02gk7"]
 [ext_resource type="Texture2D" uid="uid://2y27433a2bb8" path="res://Untitled264_20240215233344.png" id="6_io81j"]
 [ext_resource type="Script" path="res://Camera3Dsignal.gd" id="7_c4g4y"]
-[ext_resource type="Script" path="res://Camera3D2.gd" id="8_5156q"]
 [ext_resource type="Script" path="res://Panel1.gd" id="8_b04yo"]
 [ext_resource type="Script" path="res://DialogueManager.gd" id="10_civ2p"]
+[ext_resource type="Script" path="res://Camera3D5.gd" id="10_kj18c"]
 [ext_resource type="Script" path="res://Camera3D3.cs" id="10_p4fll"]
 [ext_resource type="Script" path="res://Button1.gd" id="13_e5g4p"]
 [ext_resource type="Script" path="res://Obutton.gd" id="13_r2q86"]
@@ -1286,17 +1286,29 @@ script = ExtResource("10_civ2p")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr0wb")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 502.0
-offset_top = 254.0
-offset_right = 971.0
-offset_bottom = 500.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("2_k8ff8")
-texture_hover = ExtResource("3_0wn2u")
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06658, 0)
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5336, 0, -2.05913)
+script = ExtResource("10_kj18c")
+
+[node name="Camera3D2" type="Camera3D" parent="Node3D"]
+visible = false
+script = ExtResource("7_c4g4y")
+
+[node name="Camera3D3" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1655, 0, 0)
+script = ExtResource("10_p4fll")
+
+[node name="TextureButton6" type="TextureButton" parent="."]
+offset_left = 54.0
+offset_top = 112.0
+offset_right = 349.0
+offset_bottom = 337.0
+texture_normal = ExtResource("38_fdtd7")
 ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("3_2axvj")
 
 [node name="TextureButton2" type="TextureButton" parent="."]
 offset_left = 502.0
@@ -1310,7 +1322,20 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("4_co05e")
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 502.0
+offset_top = 254.0
+offset_right = 971.0
+offset_bottom = 500.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("2_k8ff8")
+texture_hover = ExtResource("3_0wn2u")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_2axvj")
+
 [node name="TextureButton3" type="TextureButton" parent="."]
+visible = false
 offset_left = 502.0
 offset_top = 428.0
 offset_right = 971.0
@@ -1321,21 +1346,6 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_h6dge")
 
-[node name="Node3D" type="Node3D" parent="."]
-top_level = true
-
-[node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.975223, -0.221225, 0, 0.221225, 0.975223, 0, 0, 0)
-current = true
-script = ExtResource("7_c4g4y")
-
-[node name="Camera3D2" type="Camera3D" parent="Node3D"]
-transform = Transform3D(-0.366371, 0, -0.930469, 0, 1, 0, 0.930469, 0, -0.366371, 0.741907, 8.83691, 0)
-script = ExtResource("8_5156q")
-
-[node name="Camera3D3" type="Camera3D" parent="Node3D"]
-script = ExtResource("10_p4fll")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1
 z_as_relative = false
@@ -1343,6 +1353,7 @@ material = SubResource("CanvasItemMaterial_l2706")
 position = Vector2(576, 324)
 
 [node name="ExitPrompt" type="Label" parent="."]
+visible = false
 y_sort_enabled = true
 offset_left = 353.0
 offset_top = 270.0
@@ -1406,6 +1417,7 @@ transform = Transform3D(-0.945035, 0, -0.326971, 0, 1, 0, 0.326971, 0, -0.945035
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8606, 0, -6.35243)
 
 [node name="TextureButton4" type="TextureButton" parent="."]
+visible = false
 offset_right = 115.0
 offset_bottom = 51.0
 texture_normal = ExtResource("2_3owt7")
@@ -1817,8 +1829,23 @@ offset_bottom = 132.0
 script = ExtResource("32_1wvxf")
 
 [node name="Panel" type="Panel" parent="Node2D"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("32_byxj7")
 
-[node name="blitzo302821" parent="." instance=ExtResource("55_thj54")]
+[node name="main" parent="." instance=ExtResource("55_thj54")]
+transform = Transform3D(0.150532, 0, 0, 0, 0.150532, 0, 0, 0, 0.150532, 0, 0, 0)
+
+[node name="Button2" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TextureButton5" type="TextureButton" parent="."]
+offset_left = 1020.0
+offset_top = 260.0
+offset_right = 1151.0
+offset_bottom = 331.0
+texture_normal = ExtResource("38_fdtd7")
+ignore_texture_size = true
+stretch_mode = 0

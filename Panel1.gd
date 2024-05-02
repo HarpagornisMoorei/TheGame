@@ -8,7 +8,7 @@ var textureButton3
 var exitPrompt  # Changed from confirmDialog to exitPrompt for clarity
 
 func _ready():
-	camera3D = get_node("/root/Node2D/Node3D/Camera3D")
+	camera3D = get_node("../main/SpringArmPivot/SpringArm3D/Camera3D4")
 	camera3D2 = get_node("/root/Node2D/Node3D/Camera3D2")
 	textureButton = get_node("/root/Node2D/TextureButton")
 	textureButton2 = get_node("/root/Node2D/TextureButton2")
