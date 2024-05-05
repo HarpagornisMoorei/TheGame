@@ -7,7 +7,7 @@ extends CharacterBody3D
 @onready var last_camera_current_state = false
 @onready var anim_tree = $AnimationTree
 
-const SPEED = 1.0
+const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
 const LERP_VAL = 0.15
 
@@ -15,9 +15,8 @@ const LERP_VAL = 0.15
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	# Initialize the last known state
+	# Initialize the last known state of the camera
 	last_camera_current_state = camera.current
-
 	# Set the initial mouse mode based on the camera's current state
 	_update_mouse_mode(camera.current)
 
@@ -40,49 +39,44 @@ func _unhandled_input(event):
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI / 4, PI / 4)
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Apply gravity if the character is not on the floor
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle jump.
+	# Handle jump if the jump button is pressed and the character is on the floor
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction
+	# Calculate input direction from the camera's perspective
 	var input_dir = Vector3()
-	
+	if Input.get_action_strength("ui_up"):
+		input_dir -= camera.global_transform.basis.z
+	if Input.get_action_strength("ui_down"):
+		input_dir += camera.global_transform.basis.z
+	if Input.get_action_strength("ui_right"):
+		input_dir += camera.global_transform.basis.x
+	if Input.get_action_strength("ui_left"):
+		input_dir -= camera.global_transform.basis.x
 
-	# Forward and backward movement
-	input_dir += -camera.transform.basis.z * Input.get_action_strength("ui_up")
-	input_dir += camera.transform.basis.z * Input.get_action_strength("ui_down")
-
-	# Left and right movement (perpendicular to the camera's forward direction)
-	var camera_right = camera.transform.basis.x
-	var camera_left = -camera_right
-	input_dir += camera_right * Input.get_action_strength("ui_right")
-	input_dir += camera_left * Input.get_action_strength("ui_left")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
-
-	# Normalize the input direction to prevent faster movement in diagonal directions
+	# Normalize the input direction to maintain consistent movement speed
+	input_dir.y = 0  # Ignore any vertical movement from camera tilt
 	input_dir = input_dir.normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		
+
+	# Update horizontal movement based on the direction vector and speed
+	if input_dir.length() > 0:
+		velocity.x = input_dir.x * SPEED
+		velocity.z = input_dir.z * SPEED
+
+		# Rotate the character to face the direction of movement
+		var target_rotation = atan2(-input_dir.x, -input_dir.z)
+		armature.rotation.y = lerp_angle(armature.rotation.y, target_rotation, LERP_VAL)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-		
+		# Decelerate to stop when no input is detected
+		velocity.x = 0
+		velocity.z = 0
 
-	# Handle the movement
-	velocity = input_dir * SPEED
-
-	# Handle the direction
-	if input_dir != Vector3.ZERO:
-		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
-	
-
-	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
+	# Use move_and_slide to handle collisions and sliding along surfaces
 	move_and_slide()
+
+	# Optionally update animation blend position based on speed
+	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)

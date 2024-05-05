@@ -26,7 +26,7 @@ var dialogue_active = false
 var current_dialogue_id = 0
 var is_standalone_dialogue = false  # Flag to indicate if the current dialogue is standalone
 var dialogue_sequences = [
-	{ "start": 3, "end": 6 },
+	{ "start": 1, "end": 3 },
 	{ "start": 9, "end": 10 }
 	# Add more sequences as needed
 ]
@@ -80,17 +80,25 @@ func hide_dialogue():
 	print("Dialogue system deactivated.")
 
 func advance_dialogue():
-	if is_standalone_dialogue:
-		print("Hiding standalone dialogue.")
-		hide_dialogue()
-	elif active_sequence_index != -1:
-		var sequence = dialogue_sequences[active_sequence_index]
-		if current_dialogue_id < sequence.end:
-			current_dialogue_id += 1
-			show_dialogue(current_dialogue_id)
+	print("Attempting to advance dialogue...")
+	if dialogue_active:
+		print("Dialogue is active")
+		if active_sequence_index != -1:
+			print("Active sequence index:", active_sequence_index)
+			var sequence = dialogue_sequences[active_sequence_index]
+			print("Current dialogue ID before increment:", current_dialogue_id)
+			if current_dialogue_id < sequence.end:
+				current_dialogue_id += 1
+				print("Advancing to dialogue ID:", current_dialogue_id)
+				show_dialogue(current_dialogue_id)
+			else:
+				print("Reached the end of the dialogue sequence.")
+				hide_dialogue()
 		else:
-			print("Reached the end of the dialogue sequence.")
-			hide_dialogue()
+			print("No active sequence.")
+	else:
+		print("Dialogue system is not active.")
+
 
 func find_sequence_index(start_id: int) -> int:
 	for i in range(len(dialogue_sequences)):
