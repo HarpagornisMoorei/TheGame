@@ -34,8 +34,8 @@ func _update_mouse_mode(is_current: bool):
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		spring_arm_pivot.rotate_y(-event.relative.x * 0.005)
-		spring_arm.rotate_x(-event.relative.y * 0.005)
+		spring_arm_pivot.rotate_y(-event.relative.x * 0.0052)
+		spring_arm.rotate_x(-event.relative.y * 0.0052)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI / 4, PI / 4)
 
 func _physics_process(delta):
