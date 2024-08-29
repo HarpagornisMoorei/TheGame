@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bx60ih8pgiaw7"]
+[gd_scene load_steps=80 format=3 uid="uid://bx60ih8pgiaw7"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
@@ -59,11 +59,13 @@
 [ext_resource type="PackedScene" uid="uid://cxf05gegwatel" path="res://trashcan.glb" id="58_y1nqe"]
 [ext_resource type="PackedScene" uid="uid://cyjcf65nk8a8w" path="res://ComfyCouch.blend" id="59_rey1n"]
 [ext_resource type="PackedScene" uid="uid://dno6rchrvtukg" path="res://shelf2.glb" id="60_8tjep"]
-[ext_resource type="PackedScene" uid="uid://dla6joc1job7p" path="res://wall2.glb" id="60_vlswg"]
+[ext_resource type="PackedScene" uid="uid://bix5ld6ruc4jl" path="res://wall2.glb" id="60_vlswg"]
 [ext_resource type="PackedScene" uid="uid://84xtbeay1epf" path="res://QA.glb" id="61_jnrty"]
 [ext_resource type="Texture2D" uid="uid://dxmrke6ndeuh7" path="res://v6p4yxic4px81-300898569.png" id="62_ix5k0"]
 [ext_resource type="PackedScene" uid="uid://ppnteb01qo85" path="res://desk (1).glb" id="63_siagr"]
 [ext_resource type="PackedScene" uid="uid://4ios0stwqtpu" path="res://desk p.glb" id="64_hhfiv"]
+[ext_resource type="PackedScene" uid="uid://du3n865b6aue7" path="res://Models/BLIT15......23blend.blend3.blend" id="65_p6dra"]
+[ext_resource type="PackedScene" uid="uid://cmolwudxpicjc" path="res://Models/wall2.glb" id="66_ll6ty"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -81,6 +83,9 @@ glow_enabled = true
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2706"]
 
 [sub_resource type="FontFile" id="FontFile_7c2mf"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -1269,6 +1274,9 @@ cache/0/33/0/kerning_overrides/33/0 = Vector2(0, 0)
 [sub_resource type="FontFile" id="FontFile_6teey"]
 resource_local_to_scene = true
 resource_name = "j"
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -1553,16 +1561,6 @@ offset_bottom = 496.0
 texture = ExtResource("30_0n0ug")
 script = ExtResource("34_ld1lg")
 
-[node name="Voxflix" type="TextureRect" parent="Panel2"]
-visible = false
-layout_mode = 0
-offset_left = -79.0
-offset_top = -215.0
-offset_right = 345.0
-offset_bottom = 481.0
-texture = ExtResource("38_fdtd7")
-script = ExtResource("32_we7e2")
-
 [node name="Maps" type="TextureRect" parent="Panel2"]
 visible = false
 layout_mode = 0
@@ -1704,14 +1702,6 @@ offset_right = 233.0
 offset_bottom = 278.0
 texture_normal = ExtResource("38_fdtd7")
 script = ExtResource("41_tstdq")
-
-[node name="VoxFlix" type="TextureButton" parent="Panel2/Control"]
-layout_mode = 0
-offset_left = -62.0
-offset_top = -42.0
-offset_right = 88.0
-offset_bottom = 58.0
-texture_normal = ExtResource("38_fdtd7")
 
 [node name="Lustinder" type="TextureButton" parent="Panel2/Control"]
 layout_mode = 0
@@ -1919,7 +1909,7 @@ transform = Transform3D(1.88989, 0, 0, 0, 1, 0, 0, 0, 3.82109, -0.00319862, -0.3
 shape = SubResource("BoxShape3D_m6ebf")
 
 [node name="wall2" parent="." instance=ExtResource("60_vlswg")]
-transform = Transform3D(5.23473, 0, 0, 0, 5.23473, 0, 0, 0, 5.23473, 1.72609, -0.0888885, -1.93889)
+transform = Transform3D(5.23473, 0, 0, 0, 5.23473, 0, 0, 0, 5.23473, 58.3932, -0.0888885, -1.62935)
 
 [node name="shelf2" parent="." instance=ExtResource("60_8tjep")]
 transform = Transform3D(0.133284, 0, 0, 0, 0.133284, 0, 0, 0, 0.133284, -0.906086, -0.0884433, -1.62245)
@@ -1937,3 +1927,9 @@ transform = Transform3D(-6.35185e-09, 0, 0.145313, 0, 0.145313, 0, -0.145313, 0,
 
 [node name="desk p" parent="." instance=ExtResource("64_hhfiv")]
 transform = Transform3D(0.000266122, 0, -0.141179, 0, 0.141179, 0, 0.141179, 0, 0.000266122, -0.0146818, 0.29427, 0.245041)
+
+[node name="BLIT15______23blend_blend3" parent="." instance=ExtResource("65_p6dra")]
+transform = Transform3D(0.163837, 0, 0, 0, 0.163837, 0, 0, 0, 0.163837, -2.03125, 1.36197, -5.80623)
+
+[node name="wall3" parent="." instance=ExtResource("66_ll6ty")]
+transform = Transform3D(5.01783, 0, 0, 0, 5.01783, 0, 0, 0, 5.01783, 1.24284, -0.0884438, -1.48004)
