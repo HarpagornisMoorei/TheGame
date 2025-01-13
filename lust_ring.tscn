@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx4gu4pwdaj51"]
+
+[ext_resource type="Script" path="res://centralscript.gd" id="1_o7r82"]
+
+[node name="Lust ring" type="Node3D"]
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("1_o7r82")

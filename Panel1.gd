@@ -5,7 +5,7 @@ var camera3D2
 var textureButton
 var textureButton2
 var textureButton3
-var exitPrompt  # Changed from confirmDialog to exitPrompt for clarity
+var exitPrompt
 
 func _ready():
 	camera3D = get_node("../main/SpringArmPivot/SpringArm3D/Camera3D4")
@@ -49,3 +49,11 @@ func go_to_start_screen():
 	textureButton2.show()
 	textureButton3.show()
 	exitPrompt.visible = false
+
+# Function to handle incoming signals
+func handle_signal(target, value):
+	if target == "m":
+		if value == 1:
+			visible = true  # Show the menu
+		elif value == 0:
+			visible = false  # Hide the menu

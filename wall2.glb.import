@@ -29,6 +29,121 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.001.tres"
+},
+"Material.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.003.tres"
+},
+"Material.004": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.004.tres"
+},
+"Material.005": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.005.tres"
+},
+"Material.006": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.006.tres"
+},
+"Material.007": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.007.tres"
+},
+"Material.008": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.008.tres"
+},
+"Material.009": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.009.tres"
+},
+"Material.010": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.010.tres"
+},
+"Material.011": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.011.tres"
+},
+"Material.012": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.012.tres"
+},
+"Material.013": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.013.tres"
+},
+"Material.014": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.014.tres"
+},
+"Material.015": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.015.tres"
+},
+"Material.016": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.016.tres"
+},
+"Material.017": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.017.tres"
+},
+"Material.018": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.018.tres"
+},
+"Material.019": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.019.tres"
+},
+"Material.020": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.020.tres"
+},
+"Material.021": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.021.tres"
+},
+"Material.022": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.022.tres"
+},
+"Material.023": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.023.tres"
+},
+"Material.024": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.024.tres"
+},
+"Material.025": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.025.tres"
+},
+"Material.026": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.026.tres"
+},
+"Material.027": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.027.tres"
+},
+"Material.028": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.028.tres"
+},
+"Material.029": {
+"use_external/enabled": true,
+"use_external/path": "res://Material.029.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

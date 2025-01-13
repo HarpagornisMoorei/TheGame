@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://bx60ih8pgiaw7"]
+[gd_scene load_steps=97 format=3 uid="uid://245lutoe00w3"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
@@ -11,13 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://2y27433a2bb8" path="res://Untitled264_20240215233344.png" id="6_io81j"]
 [ext_resource type="Script" path="res://Camera3Dsignal.gd" id="7_c4g4y"]
 [ext_resource type="Script" path="res://Panel1.gd" id="8_b04yo"]
-[ext_resource type="Script" path="res://DialogueManager.gd" id="10_civ2p"]
 [ext_resource type="Script" path="res://Camera3D5.gd" id="10_kj18c"]
 [ext_resource type="Script" path="res://Camera3D3.cs" id="10_p4fll"]
 [ext_resource type="Script" path="res://Button1.gd" id="13_e5g4p"]
 [ext_resource type="Script" path="res://Obutton.gd" id="13_r2q86"]
 [ext_resource type="Texture2D" uid="uid://bo3xdn7csnpj1" path="res://real-pixels-artwork(11).png" id="14_4k0as"]
 [ext_resource type="PackedScene" uid="uid://ch7uhlvry11b3" path="res://textures/hbuild2.glb" id="14_h1aqy"]
+[ext_resource type="Script" path="res://Sprite2D.gd" id="14_w6048"]
 [ext_resource type="Script" path="res://Nodeb.gd" id="14_xnxjj"]
 [ext_resource type="Script" path="res://TextureButton4.gd" id="16_38707"]
 [ext_resource type="Texture2D" uid="uid://b371owrldlvpd" path="res://Screenshot 2024-02-17 204633.png" id="20_h8073"]
@@ -59,12 +59,98 @@
 [ext_resource type="PackedScene" uid="uid://cxf05gegwatel" path="res://trashcan.glb" id="58_y1nqe"]
 [ext_resource type="PackedScene" uid="uid://cyjcf65nk8a8w" path="res://ComfyCouch.blend" id="59_rey1n"]
 [ext_resource type="PackedScene" uid="uid://dno6rchrvtukg" path="res://shelf2.glb" id="60_8tjep"]
-[ext_resource type="PackedScene" uid="uid://dla6joc1job7p" path="res://wall2.glb" id="60_vlswg"]
-[ext_resource type="PackedScene" uid="uid://84xtbeay1epf" path="res://QA.glb" id="61_jnrty"]
 [ext_resource type="Texture2D" uid="uid://dxmrke6ndeuh7" path="res://v6p4yxic4px81-300898569.png" id="62_ix5k0"]
 [ext_resource type="PackedScene" uid="uid://ppnteb01qo85" path="res://desk (1).glb" id="63_siagr"]
+[ext_resource type="ArrayMesh" uid="uid://bhmweb76alrm2" path="res://Models/untitled.obj" id="63_yp3wa"]
 [ext_resource type="PackedScene" uid="uid://4ios0stwqtpu" path="res://desk p.glb" id="64_hhfiv"]
 [ext_resource type="PackedScene" uid="uid://du3n865b6aue7" path="res://Models/BLIT15......23blend.blend3.blend" id="65_p6dra"]
+[ext_resource type="PackedScene" uid="uid://b2xrc07eeufmr" path="res://Models/floor.glb" id="66_ev7me"]
+[ext_resource type="Script" path="res://MeshInstance3D.gd" id="67_pqwjq"]
+[ext_resource type="PackedScene" uid="uid://bdub5bbkyc27x" path="res://wall3.glb" id="68_xr2qe"]
+[ext_resource type="PackedScene" uid="uid://bc0utl8v0jcn4" path="res://wall3.blend" id="69_6cjr7"]
+[ext_resource type="PackedScene" uid="uid://cchd5yag36s4i" path="res://Models/floor3.glb" id="69_hi7vv"]
+[ext_resource type="PackedScene" uid="uid://db5j5nf028mux" path="res://wall5.glb" id="70_8cvq7"]
+[ext_resource type="PackedScene" uid="uid://d2qlkfqaotnpl" path="res://etw.blend" id="71_16m3c"]
+[ext_resource type="PackedScene" uid="uid://b6c2l6slumvx6" path="res://Models/etww.blend" id="72_2tq27"]
+[ext_resource type="Script" path="res://Healthbar.gd" id="73_4xhbg"]
+[ext_resource type="Script" path="res://Node2D3.gd" id="73_6s3wg"]
+[ext_resource type="Script" path="res://Healbar.gd" id="74_im8sc"]
+[ext_resource type="Script" path="res://centralscript.gd" id="76_okjic"]
+[ext_resource type="Script" path="res://Node3.gd" id="77_x1xsq"]
+[ext_resource type="Script" path="res://DataLoaderMenu.gd" id="78_q3c2i"]
+
+[sub_resource type="GDScript" id="GDScript_e8re8"]
+script/source = "extends Node
+
+class_name IDLoader
+
+# Path to save file
+const SAVE_PATH = \"user://item_ids.save\"
+
+# Dictionary to store all IDs
+var id_data = {}
+
+# Add or update an ID
+func add_id(item_name: String, id: int):
+	id_data[item_name] = id
+	print(\"Added/Updated ID: \", item_name, \" = \", id)
+
+# Remove a single ID
+func remove_id(item_name: String):
+	if id_data.has(item_name):
+		id_data.erase(item_name)
+		print(\"Removed ID: \", item_name)
+		save_ids()  # Auto-save after deletion
+
+# Remove multiple IDs
+func remove_ids(item_names: Array):
+	for item in item_names:
+		if id_data.has(item):
+			id_data.erase(item)
+			print(\"Removed ID: \", item)
+	save_ids()  # Auto-save after deletion
+
+# Clear all saved IDs
+func clear_all_ids():
+	id_data.clear()
+	print(\"Cleared all IDs\")
+	save_ids()  # Auto-save after clearing
+
+# Delete save file completely
+func delete_save_file():
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+		id_data.clear()
+		print(\"Deleted save file and cleared data\")
+
+# Save all IDs to file
+func save_ids():
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_var(id_data)
+		print(\"Saved IDs to file:\", id_data)
+	else:
+		print(\"Error saving file\")
+
+# Load IDs from file
+func load_ids():
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		if file:
+			id_data = file.get_var()
+			print(\"Loaded IDs from file: \", id_data)
+			return id_data
+	print(\"No save file found\")
+	return {}
+
+# Get a specific ID
+func get_id(item_name: String) -> int:
+	return id_data.get(item_name, 0)  # Returns 0 if not found
+
+# Get all stored IDs
+func get_all_ids() -> Dictionary:
+	return id_data
+"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -82,6 +168,9 @@ glow_enabled = true
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2706"]
 
 [sub_resource type="FontFile" id="FontFile_7c2mf"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -1267,7 +1356,7 @@ cache/0/33/0/kerning_overrides/31/0 = Vector2(0, 0)
 cache/0/33/0/kerning_overrides/32/0 = Vector2(0, 0)
 cache/0/33/0/kerning_overrides/33/0 = Vector2(0, 0)
 
-[sub_resource type="FontFile" id="FontFile_6teey"]
+[sub_resource type="FontFile" id="FontFile_30r6o"]
 resource_local_to_scene = true
 resource_name = "j"
 cache/0/16/0/ascent = 0.0
@@ -1302,8 +1391,37 @@ albedo_texture = ExtResource("62_ix5k0")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57iun"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo0ou"]
+albedo_color = Color(0.486275, 0.321569, 0.364706, 0.0352941)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rs44a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mj73i"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2bvvb"]
+
 [node name="Node2D" type="Node2D"]
-script = ExtResource("10_civ2p")
+script = SubResource("GDScript_e8re8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, -7.93604e-08, 3.66697e-08, 0, 0.419452, 0.907777, -8.74228e-08, 0.907777, -0.419452, 9.14052, 13.9922, -0.0138855)
+light_color = Color(1, 0.956863, 0.968627, 1)
+light_energy = 0.533
+light_indirect_energy = 1.189
+light_volumetric_fog_energy = 0.765
+light_angular_distance = 1.85
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.721
+shadow_transmittance_bias = -5.799
+shadow_opacity = 0.53
+shadow_blur = 0.0
+directional_shadow_split_2 = 0.285
+directional_shadow_split_3 = 0.585
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 11.3
+directional_shadow_pancake_size = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr0wb")
@@ -1317,6 +1435,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5336, 0, -2.05913)
 script = ExtResource("10_kj18c")
 
 [node name="Camera3D2" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.61166)
 visible = false
 script = ExtResource("7_c4g4y")
 
@@ -1387,28 +1506,27 @@ text = "Exit? Click y/n on your keyboard."
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(384, 654)
+position = Vector2(384, 708)
+script = ExtResource("14_w6048")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
-visible = false
 texture_repeat = 1
 clip_contents = false
 offset_left = -439.0
 offset_top = -102.0
 offset_right = 486.0
 offset_bottom = 61.0
-theme_override_fonts/normal_font = SubResource("FontFile_6teey")
+theme_override_fonts/normal_font = SubResource("FontFile_30r6o")
 theme_override_font_sizes/normal_font_size = 29
 bbcode_enabled = true
 
 [node name="Panel" type="Panel" parent="Sprite2D/RichTextLabel"]
-visible = false
 layout_mode = 0
 offset_left = -19.0
 offset_top = -10.0
 offset_right = 1942.0
 offset_bottom = 225.0
-scale = Vector2(0.655139, 1.08085)
+scale = Vector2(0.655139, 0.840851)
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D/RichTextLabel"]
 show_behind_parent = true
@@ -1417,6 +1535,7 @@ offset_left = -19.0
 offset_top = -10.0
 offset_right = 1268.0
 offset_bottom = 244.0
+scale = Vector2(1, 0.759999)
 color = Color(0, 0, 0, 1)
 
 [node name="Obutton" type="Node" parent="."]
@@ -1436,7 +1555,7 @@ script = ExtResource("14_xnxjj")
 transform = Transform3D(-0.945035, 0, -0.326971, 0, 1, 0, 0.326971, 0, -0.945035, 16.585, 1.4533, -8.36826)
 
 [node name="hbuild3" parent="." instance=ExtResource("14_h1aqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8606, 0, -6.35243)
+transform = Transform3D(5.5744, 0, 0, 0, 5.5744, 0, 0, 0, 5.5744, -61.5035, 7.97808, -51.1828)
 
 [node name="TextureButton4" type="TextureButton" parent="."]
 visible = false
@@ -1446,7 +1565,7 @@ texture_normal = ExtResource("2_3owt7")
 script = ExtResource("16_38707")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(34.8978, 0, 0, 0, 1, 0, 0, 0, 23.9853, 0, -0.0884438, 0)
+transform = Transform3D(72.1873, 0, 0, 0, 1, 0, 0, 0, 65.1304, 0, -0.0884438, 0)
 mesh = SubResource("PlaneMesh_5lsgk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -1856,7 +1975,7 @@ offset_bottom = 40.0
 script = ExtResource("32_byxj7")
 
 [node name="main" parent="." instance=ExtResource("55_thj54")]
-transform = Transform3D(0.150532, 0, 0, 0, 0.150532, 0, 0, 0, 0.150532, 0, 0, 0)
+transform = Transform3D(0.150532, 0, 0, 0, 0.150532, 0, 0, 0, 0.150532, 0, 0, 3.03783)
 
 [node name="Button2" type="Button" parent="."]
 offset_right = 8.0
@@ -1872,7 +1991,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="OFFICETABLErl2" parent="." instance=ExtResource("56_mv20u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.68586, 0.730311, 7.6788)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.68586, 0.730311, 12.6635)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="OFFICETABLErl2"]
 
@@ -1908,25 +2027,19 @@ transform = Transform3D(2.27303, 0, 0, 0, 2.27303, 0, 0, 0, 2.27303, -0.0102773,
 shape = SubResource("SphereShape3D_fgvmw")
 
 [node name="trashcan" parent="." instance=ExtResource("58_y1nqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9572, -0.0884443, 1.83254)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8133, -0.0884443, 1.83254)
 
 [node name="ComfyCouch" parent="." instance=ExtResource("59_rey1n")]
-transform = Transform3D(-0.456698, 0, -3.99258e-08, 0, 0.456698, 0, 3.99258e-08, 0, -0.456698, 6.07165, 0.385921, 0.138426)
+transform = Transform3D(-0.438523, 0, -3.83368e-08, 0, 0.438523, 0, 3.83368e-08, 0, -0.438523, 8.67675, 0.394942, 0.787357)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ComfyCouch"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ComfyCouch/StaticBody3D"]
-transform = Transform3D(1.88989, 0, 0, 0, 1, 0, 0, 0, 3.82109, -0.00319862, -0.366759, 0.72405)
+transform = Transform3D(1.88989, 0, 5.68434e-14, 0, 1, 0, -8.52651e-14, 0, 3.82109, 1.51491, -0.366759, 0.72405)
 shape = SubResource("BoxShape3D_m6ebf")
 
-[node name="wall2" parent="." instance=ExtResource("60_vlswg")]
-transform = Transform3D(5.23473, 0, 0, 0, 5.23473, 0, 0, 0, 5.23473, 1.72609, -0.0888885, 24.3658)
-
 [node name="shelf2" parent="." instance=ExtResource("60_8tjep")]
-transform = Transform3D(0.133284, 0, 0, 0, 0.133284, 0, 0, 0, 0.133284, -0.906086, -0.0884433, -1.62245)
-
-[node name="QA" parent="." instance=ExtResource("61_jnrty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6779, -0.0884438, 4.40995)
+transform = Transform3D(0.133284, 0, 0, 0, 0.133284, 0, 0, 0, 0.133284, -5.53972, -0.186157, -1.81631)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(13.1598, 0, 0, 0, 13.1598, 0, 0, 0, 13.1598, 1.69044, -0.0850755, -1.95118)
@@ -1934,13 +2047,100 @@ material_override = SubResource("StandardMaterial3D_qn7iu")
 mesh = SubResource("PlaneMesh_57iun")
 
 [node name="desk (1)" parent="." instance=ExtResource("63_siagr")]
-transform = Transform3D(-6.35185e-09, 0, 0.145313, 0, 0.145313, 0, -0.145313, 0, -6.35185e-09, 0.105521, 1.83896, 0.273196)
+transform = Transform3D(-6.35185e-09, 0, 0.145313, 0, 0.145313, 0, -0.145313, 0, -6.35185e-09, -5.59998, 0.972152, 4.93364)
 
 [node name="desk p" parent="." instance=ExtResource("64_hhfiv")]
-transform = Transform3D(0.000266122, 0, -0.141179, 0, 0.141179, 0, 0.141179, 0, 0.000266122, -0.0146818, 0.29427, 0.245041)
+transform = Transform3D(0.000268339, 0, -0.142355, 0, 0.142355, 0, 0.142355, 0, 0.000268339, -5.37818, 0.233849, 0.192234)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(5.3589, 0, 0, 0, 5.3589, 0, 0, 0, 5.3589, -0.988276, 2.63516, -1.98843)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.133593, 0, 0, 0, 0.133593, 0, 0, 0, 0.133593, -0.207415, -0.38445, -0.728886)
+cast_shadow = 3
+mesh = ExtResource("63_yp3wa")
 
 [node name="BLIT15______23blend_blend3" parent="." instance=ExtResource("65_p6dra")]
-transform = Transform3D(0.163837, 0, 0, 0, 0.163837, 0, 0, 0, 0.163837, -2.03125, 1.24938, -5.80623)
+transform = Transform3D(0.163837, 0, 0, 0, 0.163837, 0, 0, 0, 0.163837, -2.16453, 1.36415, -5.80623)
 
-[node name="wall4" parent="." instance=ExtResource("60_vlswg")]
-transform = Transform3D(5.6296, 0, 0, 0, 5.6296, 0, 0, 0, 5.6296, -4.71395, -0.0884438, -9.20643)
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.08159, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D3"]
+transform = Transform3D(40.7282, 0, 0, 0, 0.201393, 0, 0, 0, 35.6607, 3.51026, -4.09544, -2.84435)
+material_override = SubResource("StandardMaterial3D_oo0ou")
+mesh = SubResource("BoxMesh_rs44a")
+script = ExtResource("67_pqwjq")
+
+[node name="wall5" parent="." instance=ExtResource("68_xr2qe")]
+transform = Transform3D(7.37871, 0, 0, 0, 7.37871, 0, 0, 0, 7.37871, -0.576698, 11.2899, -2.55929)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.570823, 0, 0, 0, 0.570823, 0, 0, 0, 0.570823, 1.43421, -0.0503159, -2.92683)
+skeleton = NodePath("floor")
+
+[node name="floor" parent="MeshInstance3D3" instance=ExtResource("66_ev7me")]
+
+[node name="floor3" parent="." instance=ExtResource("69_hi7vv")]
+transform = Transform3D(0.183889, 0, 0, 0, 0.183889, 0, 0, 0, 0.183889, -12.2901, -0.0339289, 1.24438)
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4503, -0.0884438, 6.44217)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8681, 0, -9.56725)
+mesh = SubResource("BoxMesh_mj73i")
+
+[node name="Node3D5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1795, -0.176888, 22.9297)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8681, 0, -9.56725)
+mesh = SubResource("BoxMesh_mj73i")
+skeleton = NodePath("../../Node3D5")
+
+[node name="wall3" parent="." instance=ExtResource("69_6cjr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.1642, -0.0884438, -23.7035)
+
+[node name="wall6" parent="." instance=ExtResource("70_8cvq7")]
+transform = Transform3D(7.59874, 0, 0, 0, 7.59874, 0, 0, 0, 7.59874, 0.376158, -0.0568159, -2.52348)
+
+[node name="etw" parent="." instance=ExtResource("71_16m3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3475, -0.0884457, -27.3866)
+
+[node name="etww" parent="." instance=ExtResource("72_2tq27")]
+transform = Transform3D(0.167664, 0, 0, 0, 0.167664, 0, 0, 0, 0.167664, -0.455952, 1.38952, -4.8418)
+visible = false
+
+[node name="Node2D3" type="Node2D" parent="."]
+script = ExtResource("73_6s3wg")
+
+[node name="TextureRect" type="TextureRect" parent="Node2D3"]
+offset_left = 1177.0
+offset_top = -119.0
+offset_right = 1217.0
+offset_bottom = -79.0
+scale = Vector2(7.96, 0.067)
+texture = SubResource("CanvasTexture_2bvvb")
+script = ExtResource("73_4xhbg")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D3"]
+offset_left = 1379.0
+offset_top = -85.0
+offset_right = 1419.0
+offset_bottom = -45.0
+scale = Vector2(2.92, 0.0665543)
+texture = SubResource("CanvasTexture_2bvvb")
+script = ExtResource("74_im8sc")
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("76_okjic")
+
+[node name="Node3" type="Node" parent="."]
+script = ExtResource("77_x1xsq")
+
+[node name="DataLoaderMenu" type="Node" parent="."]
+script = ExtResource("78_q3c2i")

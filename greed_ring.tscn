@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjh4d088c18il"]
+
+[ext_resource type="Script" path="res://centralscript.gd" id="1_c2dh0"]
+
+[node name="Greed ring" type="Node3D"]
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("1_c2dh0")

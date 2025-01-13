@@ -6,8 +6,8 @@ extends CharacterBody3D
 @onready var camera = get_node("SpringArmPivot/SpringArm3D/Camera3D4")
 @onready var last_camera_current_state = false
 @onready var anim_tree = $AnimationTree
-
-const SPEED = 2.0
+const m=2.05
+const SPEED = m
 const JUMP_VELOCITY = 4.5
 const LERP_VAL = 0.1
 

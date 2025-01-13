@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7vsj7m2lqtd8"]
+
+[ext_resource type="Texture2D" uid="uid://mtv5aavw4mhk" path="res://wall2_Plane Base Color.png" id="1_cs2hg"]
+
+[resource]
+resource_name = "Material.010"
+cull_mode = 2
+albedo_texture = ExtResource("1_cs2hg")
+roughness = 0.5

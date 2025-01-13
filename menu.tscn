@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6lcsd860s170"]
+
+[ext_resource type="Texture2D" uid="uid://c66bf1ef7joii" path="res://Untitled255_20240214213649.webp" id="1_51vlh"]
+[ext_resource type="Texture2D" uid="uid://bscvj0k0nnayl" path="res://Untitled259_20240215233123.png" id="2_c3nv1"]
+[ext_resource type="Script" path="res://TextureButton1.gd" id="3_ng57x"]
+[ext_resource type="Script" path="res://Sprite2D.gd" id="4_qof4r"]
+
+[sub_resource type="FontFile" id="FontFile_m6cmw"]
+resource_local_to_scene = true
+resource_name = "j"
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/29/0 = Vector2(0, 0)
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/29/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/29/0/kerning_overrides/29/0 = Vector2(0, 0)
+
+[node name="Menu" type="Node2D"]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 502.0
+offset_top = 254.0
+offset_right = 971.0
+offset_bottom = 500.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_51vlh")
+texture_hover = ExtResource("2_c3nv1")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_ng57x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(384, 708)
+script = ExtResource("4_qof4r")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+texture_repeat = 1
+clip_contents = false
+offset_left = -439.0
+offset_top = -102.0
+offset_right = 486.0
+offset_bottom = 61.0
+theme_override_fonts/normal_font = SubResource("FontFile_m6cmw")
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+
+[node name="Panel" type="Panel" parent="Sprite2D/RichTextLabel"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 1942.0
+offset_bottom = 225.0
+scale = Vector2(0.655139, 0.840851)
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/RichTextLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 1268.0
+offset_bottom = 244.0
+scale = Vector2(1, 0.759999)
+color = Color(0, 0, 0, 1)
