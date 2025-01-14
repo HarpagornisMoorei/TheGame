@@ -16,9 +16,9 @@ func _ready():
 
 func _on_check_timer_timeout():
 	var camera3D2 = get_node("/root/Node2D/Node3D/Camera3D2")
-	var camera3D3 = get_node("/root/Node2D/Node3D/Camera3D3")
+	
 	# Check if Camera3D3 is the active camera
-	if camera3D3 and camera3D3.current:
+	if camera3D2.current:
 		visible = true
 	else:
 		visible = false
@@ -26,10 +26,9 @@ func _on_check_timer_timeout():
 func _on_TextureButton4_pressed():
 	# Switch active camera back to Camera3D2
 	var camera3D2 = get_node("/root/Node2D/Node3D/Camera3D2")
-	var camera3D3 = get_node("/root/Node2D/Node3D/Camera3D3")
+	
 	if camera3D2:
 		camera3D2.current = true
-	if camera3D3:
-		camera3D3.current = false
+		
 	# Optionally hide the button after pressing
 	visible = false

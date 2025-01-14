@@ -1,8 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjh4d088c18il"]
+[gd_scene load_steps=9 format=3 uid="uid://cjh4d088c18il"]
 
 [ext_resource type="Script" path="res://centralscript.gd" id="1_c2dh0"]
+[ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="2_ub0xc"]
+[ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="3_dxh07"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wp3tn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iph2b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_varqt"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0ivd0"]
+sky_material = SubResource("ProceduralSkyMaterial_varqt")
+
+[sub_resource type="Environment" id="Environment_npjic"]
+background_mode = 2
+sky = SubResource("Sky_0ivd0")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Greed ring" type="Node3D"]
 
 [node name="Node2" type="Node" parent="."]
 script = ExtResource("1_c2dh0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wp3tn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(6.86697, 0, 0, 0, 0.293294, 0, 0, 0, 7.71847, 0, -0.190481, 0)
+shape = SubResource("BoxShape3D_iph2b")
+
+[node name="char" parent="." instance=ExtResource("2_ub0xc")]
+
+[node name="Node3" type="Node" parent="."]
+script = ExtResource("1_c2dh0")
+
+[node name="Menu" parent="." instance=ExtResource("3_dxh07")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_npjic")

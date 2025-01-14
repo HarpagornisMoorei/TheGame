@@ -21,6 +21,8 @@ CameraSignals="*res://CameraSignals.gd"
 GlobalSignals="*res://GlobalSignals.gd"
 SignalManager="*res://global.gd"
 RingNetwork="*res://ring_network.gd"
+CentralScript="*res://CentralScript.gd"
+SceneManager="*res://scene_manager.gd"
 
 [dotnet]
 

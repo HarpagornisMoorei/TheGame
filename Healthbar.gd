@@ -1,19 +1,19 @@
 extends TextureRect
 
 # Variables for health
-var max_health = 100
-var current_health = max_health
+static var max_health = 100
+static var current_health = max_health
 # Set the initial width of the health bar
-var initial_width = 40.0
+static var initial_width = 40.0
 # Healing rate in health points per second
-var healing_rate = max_health / 60.0  # Heal fully in 60 seconds
+static var healing_rate = max_health / 60.0  # Heal fully in 60 seconds
 # Timer for healing
-var healing_timer : Timer
+static var healing_timer : Timer
 # Variables to handle smooth movement of the health bar
-var target_size = initial_width
-var lerp_speed = 5.0
+static var target_size = initial_width
+static var lerp_speed = 5.0
 # System control
-var system_enabled = false
+static var system_enabled = false
 
 func _ready():
 	# Set initial width
@@ -28,10 +28,8 @@ func _ready():
 		print("Failed to connect signal.")
 	
 	# Connect to the emitter's toggle signal
-	var emitter = get_node("/root/Node2D/Node2")  # Adjust path as needed
-	if emitter:
-		emitter.toggle_signal.connect(_on_toggle_signal)
-		print("Connected to toggle signals")
+	if not CentralScript.toggle_signal.is_connected(_on_toggle_signal):
+		CentralScript.toggle_signal.connect(_on_toggle_signal)
 	
 	# Initialize the healing timer
 	healing_timer = Timer.new()

@@ -1,3 +1,46 @@
-[gd_scene format=3 uid="uid://dojs4dvgv47ie"]
+[gd_scene load_steps=9 format=3 uid="uid://dojs4dvgv47ie"]
+
+[ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="1_d0vtk"]
+[ext_resource type="Script" path="res://centralscript.gd" id="2_njhq8"]
+[ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="3_us0ne"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hq3fe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3yjw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_71x1d"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_r5214"]
+sky_material = SubResource("ProceduralSkyMaterial_71x1d")
+
+[sub_resource type="Environment" id="Environment_djfpa"]
+background_mode = 2
+sky = SubResource("Sky_r5214")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Pride ring" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_hq3fe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(6.86697, 0, 0, 0, 0.293294, 0, 0, 0, 7.71847, 0, -0.190481, 0)
+shape = SubResource("BoxShape3D_n3yjw")
+
+[node name="char" parent="." instance=ExtResource("1_d0vtk")]
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("2_njhq8")
+
+[node name="Menu" parent="." instance=ExtResource("3_us0ne")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_djfpa")

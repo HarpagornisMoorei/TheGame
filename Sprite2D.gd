@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var system_enabled = false  # Changed default to false for d0 state
+static var system_enabled = false  # Changed default to false for d0 state
 
 func _ready():
 	# Connect the alert message signal to the handler
@@ -8,18 +8,13 @@ func _ready():
 		GlobalSignals.alert_message.connect(_on_alert_message)
 	
 	# Connect to the emitter's toggle signal
-	var emitter = get_node("/root/Node2D/Node2")  # Adjust path as needed
-	if emitter:
-		if not emitter.toggle_signal.is_connected(_on_toggle_signal):
-			emitter.toggle_signal.connect(_on_toggle_signal)
-			print("Connected to emitter toggle signals")
-			print("Dialog system initialized in disabled state (d0)")
-	else:
-		print("Failed to find emitter node")
+	if not CentralScript.toggle_signal.is_connected(_on_toggle_signal):
+		CentralScript.toggle_signal.connect(_on_toggle_signal)
+		print("Connected to emitter toggle signals")
+		print("Dialog system initialized in disabled state (d0)")
 	
 	# Ensure dialogue is hidden on startup
 	hide_dialogue()
-
 
 var dialogue_texts = {
 	1: "Why did you click the O button?",
@@ -51,7 +46,7 @@ func _on_toggle_signal(target: String, state: int):
 				show_dialogue(current_dialogue_id)
 			print("Dialog system enabled")
 
-func _process(delta):
+func _process(_delta):
 	if not system_enabled:  # Block all processing when system is disabled
 		return
 		

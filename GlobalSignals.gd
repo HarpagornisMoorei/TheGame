@@ -11,7 +11,7 @@ signal alert_message(id)
 func hi():
 	emit_signal("button_pressed_signal")
 	var camera3D4 = get_node("SpringArmPivot/SpringArm3D/Camera3D4")
-	var texture_button = get_node("../TextureButton")
+	var texture_button = get_node("Root/menu/TextureButton")
 	
 	if camera3D4:
 		camera3D4.current = true

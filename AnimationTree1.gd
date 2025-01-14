@@ -9,5 +9,4 @@ func _physics_process(delta):
 	# Check if the anim_tree is not null to avoid calling methods on a null instance
 	if anim_tree:
 		anim_tree.advance(delta * anim_speed_scale)
-	else:
-		print("AnimationPlayer node not found or not loaded yet.")
+	

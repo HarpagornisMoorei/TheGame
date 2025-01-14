@@ -9,7 +9,7 @@ var camera_active = false  # Default to inactive (c0)
 
 func _ready():
 	# Connect to the emitter's toggle signal
-	var emitter = get_node("/root/Node2D/Node2")  # Adjust path as needed
+	var emitter = get_node("CentralScript")  # Adjust path as needed
 	if emitter:
 		if not emitter.toggle_signal.is_connected(_on_toggle_signal):
 			emitter.toggle_signal.connect(_on_toggle_signal)

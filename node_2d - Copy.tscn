@@ -1,10 +1,9 @@
-[gd_scene load_steps=97 format=3 uid="uid://245lutoe00w3"]
+[gd_scene load_steps=95 format=3 uid="uid://245lutoe00w3"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
 [ext_resource type="Texture2D" uid="uid://c66bf1ef7joii" path="res://Untitled255_20240214213649.webp" id="2_k8ff8"]
 [ext_resource type="Texture2D" uid="uid://bscvj0k0nnayl" path="res://Untitled259_20240215233123.png" id="3_0wn2u"]
-[ext_resource type="Script" path="res://TextureButton1.gd" id="3_2axvj"]
 [ext_resource type="Script" path="res://TextureButton4.cs" id="4_co05e"]
 [ext_resource type="Texture2D" uid="uid://ctv83tllc6p1i" path="res://Untitled255_20240215170303.png" id="4_suhqg"]
 [ext_resource type="Texture2D" uid="uid://07h43ie5kwa" path="res://Untitled255_20240215180024.png" id="6_02gk7"]
@@ -17,7 +16,6 @@
 [ext_resource type="Script" path="res://Obutton.gd" id="13_r2q86"]
 [ext_resource type="Texture2D" uid="uid://bo3xdn7csnpj1" path="res://real-pixels-artwork(11).png" id="14_4k0as"]
 [ext_resource type="PackedScene" uid="uid://ch7uhlvry11b3" path="res://textures/hbuild2.glb" id="14_h1aqy"]
-[ext_resource type="Script" path="res://Sprite2D.gd" id="14_w6048"]
 [ext_resource type="Script" path="res://Nodeb.gd" id="14_xnxjj"]
 [ext_resource type="Script" path="res://TextureButton4.gd" id="16_38707"]
 [ext_resource type="Texture2D" uid="uid://b371owrldlvpd" path="res://Screenshot 2024-02-17 204633.png" id="20_h8073"]
@@ -77,7 +75,7 @@
 [ext_resource type="Script" path="res://Healbar.gd" id="74_im8sc"]
 [ext_resource type="Script" path="res://centralscript.gd" id="76_okjic"]
 [ext_resource type="Script" path="res://Node3.gd" id="77_x1xsq"]
-[ext_resource type="Script" path="res://DataLoaderMenu.gd" id="78_q3c2i"]
+[ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="79_8p5g6"]
 
 [sub_resource type="GDScript" id="GDScript_e8re8"]
 script/source = "extends Node
@@ -156,12 +154,12 @@ func get_all_ids() -> Dictionary:
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_s7m45"]
+[sub_resource type="Sky" id="Sky_7kn1n"]
 sky_material = SubResource("ProceduralSkyMaterial_sphtl")
 
 [sub_resource type="Environment" id="Environment_pr0wb"]
 background_mode = 2
-sky = SubResource("Sky_s7m45")
+sky = SubResource("Sky_7kn1n")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -1431,7 +1429,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06658, 0)
 top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5336, 0, -2.05913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.326162, -1.09869, 6.81139)
 script = ExtResource("10_kj18c")
 
 [node name="Camera3D2" type="Camera3D" parent="Node3D"]
@@ -1439,7 +1437,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.61166)
 visible = false
 script = ExtResource("7_c4g4y")
 
-[node name="Camera3D3" type="Camera3D" parent="Node3D"]
+[node name="Cutscene camera" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1655, 0, 0)
 script = ExtResource("10_p4fll")
 
@@ -1464,16 +1462,15 @@ stretch_mode = 0
 script = ExtResource("4_co05e")
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 502.0
-offset_top = 254.0
-offset_right = 971.0
-offset_bottom = 500.0
+offset_left = 756.0
+offset_top = 236.0
+offset_right = 1225.0
+offset_bottom = 482.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("2_k8ff8")
 texture_hover = ExtResource("3_0wn2u")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("3_2axvj")
 
 [node name="TextureButton3" type="TextureButton" parent="."]
 visible = false
@@ -1507,7 +1504,6 @@ vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(384, 708)
-script = ExtResource("14_w6048")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
 texture_repeat = 1
@@ -2142,5 +2138,4 @@ script = ExtResource("76_okjic")
 [node name="Node3" type="Node" parent="."]
 script = ExtResource("77_x1xsq")
 
-[node name="DataLoaderMenu" type="Node" parent="."]
-script = ExtResource("78_q3c2i")
+[node name="Menu" parent="." instance=ExtResource("79_8p5g6")]
