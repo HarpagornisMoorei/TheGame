@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://djqcom4jl33tn"]
+[gd_scene load_steps=10 format=3 uid="uid://djqcom4jl33tn"]
 
 [ext_resource type="Script" path="res://centralscript.gd" id="1_8eq4y"]
 [ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="2_ggd17"]
 [ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="3_bjqrw"]
+[ext_resource type="PackedScene" uid="uid://bh3e8b8xhs0as" path="res://items.tscn" id="4_aetp6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s4a6y"]
 
@@ -47,3 +48,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
 
 [node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a1lal")
+
+[node name="Items" parent="." instance=ExtResource("4_aetp6")]

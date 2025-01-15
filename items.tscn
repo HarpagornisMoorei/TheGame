@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bh3e8b8xhs0as"]
+
+[node name="Items" type="Node3D"]
+
+[node name="Gun" type="Node3D" parent="."]

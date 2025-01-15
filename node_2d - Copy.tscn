@@ -1,9 +1,10 @@
-[gd_scene load_steps=95 format=3 uid="uid://245lutoe00w3"]
+[gd_scene load_steps=98 format=3 uid="uid://245lutoe00w3"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
 [ext_resource type="Texture2D" uid="uid://c66bf1ef7joii" path="res://Untitled255_20240214213649.webp" id="2_k8ff8"]
 [ext_resource type="Texture2D" uid="uid://bscvj0k0nnayl" path="res://Untitled259_20240215233123.png" id="3_0wn2u"]
+[ext_resource type="Script" path="res://Camera3D3.gd" id="4_7r0k2"]
 [ext_resource type="Script" path="res://TextureButton4.cs" id="4_co05e"]
 [ext_resource type="Texture2D" uid="uid://ctv83tllc6p1i" path="res://Untitled255_20240215170303.png" id="4_suhqg"]
 [ext_resource type="Texture2D" uid="uid://07h43ie5kwa" path="res://Untitled255_20240215180024.png" id="6_02gk7"]
@@ -74,8 +75,10 @@
 [ext_resource type="Script" path="res://Node2D3.gd" id="73_6s3wg"]
 [ext_resource type="Script" path="res://Healbar.gd" id="74_im8sc"]
 [ext_resource type="Script" path="res://centralscript.gd" id="76_okjic"]
+[ext_resource type="Script" path="res://3Spawn3.gd" id="77_2j2kk"]
 [ext_resource type="Script" path="res://Node3.gd" id="77_x1xsq"]
 [ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="79_8p5g6"]
+[ext_resource type="Script" path="res://Node4.gd" id="79_tto8r"]
 
 [sub_resource type="GDScript" id="GDScript_e8re8"]
 script/source = "extends Node
@@ -1441,6 +1444,9 @@ script = ExtResource("7_c4g4y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1655, 0, 0)
 script = ExtResource("10_p4fll")
 
+[node name="Camera3D3" type="Camera3D" parent="Node3D"]
+script = ExtResource("4_7r0k2")
+
 [node name="TextureButton6" type="TextureButton" parent="."]
 offset_left = 54.0
 offset_top = 112.0
@@ -1491,7 +1497,6 @@ material = SubResource("CanvasItemMaterial_l2706")
 position = Vector2(576, 324)
 
 [node name="ExitPrompt" type="Label" parent="."]
-visible = false
 y_sort_enabled = true
 offset_left = 353.0
 offset_top = 270.0
@@ -2139,3 +2144,11 @@ script = ExtResource("76_okjic")
 script = ExtResource("77_x1xsq")
 
 [node name="Menu" parent="." instance=ExtResource("79_8p5g6")]
+
+[node name="Spawn" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.485114, 0, 0, 0, 1, 0, 0, 0, -0.0144032, 0, 0.206053, -1.67779)
+skeleton = NodePath("../MeshInstance3D")
+script = ExtResource("77_2j2kk")
+
+[node name="Node4" type="Node" parent="."]
+script = ExtResource("79_tto8r")

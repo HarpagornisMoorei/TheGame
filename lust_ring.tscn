@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx4gu4pwdaj51"]
+[gd_scene load_steps=11 format=3 uid="uid://cx4gu4pwdaj51"]
 
 [ext_resource type="Script" path="res://centralscript.gd" id="1_o7r82"]
 [ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="2_gxbyv"]
 [ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="3_jhkik"]
+[ext_resource type="Script" path="res://3Spawn3.gd" id="4_xumat"]
+[ext_resource type="PackedScene" uid="uid://bh3e8b8xhs0as" path="res://items.tscn" id="5_h4jca"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qink0"]
 
@@ -47,3 +49,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
 
 [node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pkt4s")
+
+[node name="Spawn" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.485114, 0, 0, 0, 1, 0, 0, 0, -0.0144032, 0, 0.206053, -1.67779)
+skeleton = NodePath("../MeshInstance3D")
+script = ExtResource("4_xumat")
+
+[node name="Items" parent="." instance=ExtResource("5_h4jca")]
