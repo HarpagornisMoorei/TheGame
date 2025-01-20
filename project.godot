@@ -25,6 +25,7 @@ CentralScript="*res://CentralScript.gd"
 SceneManager="*res://scene_manager.gd"
 SaveManager="*res://save_manager.gd"
 Slotsignalmanager="*res://slotsignalmanager.gd"
+Animationhandlercutscene="*res://animationhandlercutscene.gd"
 
 [dotnet]
 

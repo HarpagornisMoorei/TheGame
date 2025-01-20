@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://do0e37iwvddqn"]
+[gd_scene load_steps=13 format=3 uid="uid://do0e37iwvddqn"]
 
 [ext_resource type="Script" path="res://centralscript.gd" id="1_m0ktg"]
+[ext_resource type="Script" path="res://wrath_ring.gd" id="1_ngxk7"]
 [ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="2_r4myn"]
 [ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="3_mjenw"]
 [ext_resource type="Script" path="res://Spawn.gd" id="4_yfb2d"]
 [ext_resource type="PackedScene" uid="uid://bh3e8b8xhs0as" path="res://items.tscn" id="5_yy75k"]
+[ext_resource type="PackedScene" uid="uid://bgw0wepfaw1ar" path="res://bh.tscn" id="6_i7e56"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ln7el"]
 
@@ -24,6 +26,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Wrath ring" type="Node3D"]
+script = ExtResource("1_ngxk7")
 
 [node name="Node2" type="Node" parent="."]
 script = ExtResource("1_m0ktg")
@@ -43,6 +46,7 @@ shape = SubResource("BoxShape3D_6giay")
 script = ExtResource("1_m0ktg")
 
 [node name="Menu" parent="." instance=ExtResource("3_mjenw")]
+position = Vector2(580, 323)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
@@ -56,3 +60,6 @@ skeleton = NodePath("../MeshInstance3D")
 script = ExtResource("4_yfb2d")
 
 [node name="Items" parent="." instance=ExtResource("5_yy75k")]
+
+[node name="bh" parent="." instance=ExtResource("6_i7e56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20607, 0, 0)

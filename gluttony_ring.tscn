@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1fhc3vdhisvu"]
+[gd_scene load_steps=17 format=3 uid="uid://d1fhc3vdhisvu"]
 
 [ext_resource type="PackedScene" uid="uid://c4vkugxi0e1to" path="res://char.tscn" id="1_duoij"]
 [ext_resource type="Script" path="res://centralscript.gd" id="2_g2dr7"]
@@ -6,30 +6,62 @@
 [ext_resource type="Script" path="res://Spawn.gd" id="4_d02fv"]
 [ext_resource type="Script" path="res://Spawn2.gd" id="5_wehow"]
 [ext_resource type="PackedScene" uid="uid://bh3e8b8xhs0as" path="res://items.tscn" id="6_ia0fe"]
+[ext_resource type="PackedScene" uid="uid://doxmir16hjm6q" path="res://blitz.tscn" id="7_nccbx"]
+[ext_resource type="PackedScene" uid="uid://db5j5nf028mux" path="res://wall5.glb" id="8_1w8dg"]
+[ext_resource type="PackedScene" uid="uid://cchd5yag36s4i" path="res://Models/floor3.glb" id="9_ayyth"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a2jd8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mg04c"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_22nva"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_mn1qm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gtppo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xoqou"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_6kkhw"]
-sky_material = SubResource("ProceduralSkyMaterial_22nva")
+[sub_resource type="Sky" id="Sky_wl6i4"]
+sky_material = SubResource("ProceduralSkyMaterial_xoqou")
 
-[sub_resource type="Environment" id="Environment_m70qb"]
+[sub_resource type="Environment" id="Environment_xu375"]
 background_mode = 2
-sky = SubResource("Sky_6kkhw")
+sky = SubResource("Sky_wl6i4")
 tonemap_mode = 2
+ssao_intensity = 0.67
+ssao_power = 0.609189
+ssao_detail = 0.69
+ssao_sharpness = 0.78
+ssil_radius = 12.39
+ssil_intensity = 2.32
+sdfgi_bounce_feedback = 0.0
+sdfgi_cascades = 5
+sdfgi_min_cell_size = 0.3
+sdfgi_cascade0_distance = 19.2
+sdfgi_max_distance = 614.4
+sdfgi_energy = 2.0
 glow_enabled = true
+glow_hdr_threshold = 0.95
+fog_light_energy = 0.03
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0045
+volumetric_fog_albedo = Color(0.278431, 0.0156863, 0.0196078, 1)
+volumetric_fog_emission = Color(0.87451, 0.105882, 0.0705882, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_ambient_inject = 16.0
+volumetric_fog_sky_affect = 0.046
+volumetric_fog_temporal_reprojection_amount = 0.935
 
 [node name="Gluttony ring" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(29.4082, 0, 0, 0, 1, 0, 0, 0, 27.3944, 0, 0, 0)
 mesh = SubResource("PlaneMesh_a2jd8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(0.278469, 0, 0, 0, 1, 0, 0, 0, 0.225803, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 transform = Transform3D(6.86697, 0, 0, 0, 0.293294, 0, 0, 0, 7.71847, 0, -0.190481, 0)
@@ -42,12 +74,6 @@ script = ExtResource("2_g2dr7")
 
 [node name="Menu" parent="." instance=ExtResource("3_fjn7n")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.04196, 0)
-
-[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_m70qb")
-
 [node name="Spawn" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.485114, 0, 0, 0, 1, 0, 0, 0, -0.0144032, 0, 0.206053, -1.67779)
 skeleton = NodePath("../MeshInstance3D")
@@ -59,3 +85,44 @@ skeleton = NodePath("../MeshInstance3D")
 script = ExtResource("5_wehow")
 
 [node name="Items" parent="." instance=ExtResource("6_ia0fe")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.98962, 0, 0, 0, 1, 0, 1.59025, -4.41909)
+mesh = SubResource("CylinderMesh_mn1qm")
+
+[node name="blitz" parent="." instance=ExtResource("7_nccbx")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2, 3, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50971, 0.726414, 0)
+mesh = SubResource("BoxMesh_gtppo")
+
+[node name="Items2" parent="." instance=ExtResource("6_ia0fe")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, -7.93604e-08, 3.66697e-08, 0, 0.419452, 0.907777, -8.74228e-08, 0.907777, -0.419452, 9.14052, 13.9922, -0.0138855)
+light_energy = 0.418
+light_indirect_energy = 1.189
+light_volumetric_fog_energy = 2.19
+light_angular_distance = 0.75
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.721
+shadow_transmittance_bias = -5.799
+shadow_opacity = 0.53
+shadow_blur = 0.0
+directional_shadow_split_2 = 0.285
+directional_shadow_split_3 = 0.585
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 11.3
+directional_shadow_pancake_size = 0.4
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xu375")
+
+[node name="wall6" parent="." instance=ExtResource("8_1w8dg")]
+transform = Transform3D(7.59874, 0, 0, 0, 7.59874, 0, 0, 0, 7.59874, 0.376158, -0.0568159, -2.52348)
+
+[node name="floor3" parent="." instance=ExtResource("9_ayyth")]
+transform = Transform3D(0.183889, 0, 0, 0, 0.183889, 0, 0, 0, 0.183889, -12.2901, 0.00494882, 1.24438)

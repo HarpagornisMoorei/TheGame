@@ -50,7 +50,8 @@ func _on_button_pressed():
 	
 	# Send signals before changing scene
 	CentralScript.process_signal("d1 to1 h1 b0 m1 n1 c1 g1")
-	SceneManager.process_signal("5 spawn")
+	SceneManager.process_signal("3 spawn")
+	
 	
 	# Emit custom signal for scene transition
 	emit_signal("scene_transition_requested", "node_2d - Copy")

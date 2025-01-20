@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf27qf6jl1p7m"]
+
+[ext_resource type="Script" path="res://loading_screen.gd" id="1_tgl7d"]
+
+[node name="Load screen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 621.0
+offset_bottom = 262.0
+script = ExtResource("1_tgl7d")
+
+[node name="ProgressLine" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 259.0
+offset_right = 804.0
+offset_bottom = 451.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -851.0
+offset_top = -258.0
+offset_right = -811.0
+offset_bottom = -218.0
+scale = Vector2(85.6145, 49.4883)
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingLine" type="ColorRect" parent="."]
+top_level = true
+layout_mode = 0
+offset_left = 469.0
+offset_top = 328.0
+offset_right = 509.0
+offset_bottom = 345.0
+scale = Vector2(7.04, 0.119999)

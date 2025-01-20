@@ -8,3 +8,6 @@ func _ready():
 	if "gun" in data:
 		var id = data.split(" ")[1]  # Gets the number after "gun "
 		print("Gun ID: ", id)
+		print()
+
+	

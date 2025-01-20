@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://245lutoe00w3"]
+[gd_scene load_steps=100 format=3 uid="uid://245lutoe00w3"]
 
 [ext_resource type="Texture2D" uid="uid://brq8jxuvifk0t" path="res://real-pixels-artwork(6).png" id="2_3owt7"]
 [ext_resource type="Script" path="res://TextureButton3.cs" id="2_h6dge"]
@@ -79,6 +79,8 @@
 [ext_resource type="Script" path="res://Node3.gd" id="77_x1xsq"]
 [ext_resource type="PackedScene" uid="uid://b6lcsd860s170" path="res://menu.tscn" id="79_8p5g6"]
 [ext_resource type="Script" path="res://Node4.gd" id="79_tto8r"]
+[ext_resource type="Script" path="res://SceneChanger.gd" id="80_ny4o2"]
+[ext_resource type="PackedScene" uid="uid://doxmir16hjm6q" path="res://blitz.tscn" id="81_20wph"]
 
 [sub_resource type="GDScript" id="GDScript_e8re8"]
 script/source = "extends Node
@@ -152,19 +154,6 @@ func get_id(item_name: String) -> int:
 func get_all_ids() -> Dictionary:
 	return id_data
 "
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sphtl"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_7kn1n"]
-sky_material = SubResource("ProceduralSkyMaterial_sphtl")
-
-[sub_resource type="Environment" id="Environment_pr0wb"]
-background_mode = 2
-sky = SubResource("Sky_7kn1n")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2706"]
 
@@ -1401,6 +1390,37 @@ albedo_color = Color(0.486275, 0.321569, 0.364706, 0.0352941)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2bvvb"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tlwfj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_mlwad"]
+sky_material = SubResource("ProceduralSkyMaterial_tlwfj")
+
+[sub_resource type="Environment" id="Environment_pqn17"]
+background_mode = 2
+sky = SubResource("Sky_mlwad")
+ambient_light_color = Color(0.803922, 0, 0, 1)
+ambient_light_energy = 5.95
+tonemap_mode = 2
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 1.33
+sdfgi_cascades = 5
+sdfgi_min_cell_size = 0.3
+sdfgi_energy = 2.0
+glow_enabled = true
+glow_hdr_threshold = 0.95
+fog_light_energy = 0.03
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0045
+volumetric_fog_albedo = Color(0.278431, 0.0156863, 0.0196078, 1)
+volumetric_fog_emission = Color(0.87451, 0.105882, 0.0705882, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_ambient_inject = 16.0
+volumetric_fog_sky_affect = 0.046
+volumetric_fog_temporal_reprojection_amount = 0.935
+
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_e8re8")
 
@@ -1423,9 +1443,6 @@ directional_shadow_split_3 = 0.585
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 11.3
 directional_shadow_pancake_size = 0.4
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pr0wb")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06658, 0)
@@ -2152,3 +2169,16 @@ script = ExtResource("77_2j2kk")
 
 [node name="Node4" type="Node" parent="."]
 script = ExtResource("79_tto8r")
+
+[node name="Elevator" type="Node3D" parent="."]
+
+[node name="Node5" type="Node" parent="."]
+script = ExtResource("80_ny4o2")
+
+[node name="blitz" parent="." instance=ExtResource("81_20wph")]
+transform = Transform3D(0.292196, 0, 0, 0, 0.292196, 0, 0, 0, 0.292196, 0, 2.435, 0)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+
+[node name="WorldEnvironment3" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pqn17")
